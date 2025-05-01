@@ -22,6 +22,12 @@ public class PlayerMovement : MonoBehaviour
         // เคลื่อนที่ซ้าย-ขวา
         rb2d.linearVelocity = new Vector2(moveInput * speed, rb2d.linearVelocity.y);
 
+        // Flip character
+        if (moveInput > 0)
+            transform.localScale = new Vector3(-2, 2, 1);
+        else if (moveInput < 0)
+            transform.localScale = new Vector3(2, 2, 1);
+
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
             rb2d.AddForce(new Vector2(rb2d.linearVelocity.x, jumpForce));
