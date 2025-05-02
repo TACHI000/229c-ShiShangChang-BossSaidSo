@@ -49,4 +49,15 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
     }//OnCollisionExit2D
+
+    bool IsGrounded()
+    {
+        float extraHeight = 0.1f;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, extraHeight, LayerMask.GetMask("Ground"));
+
+        Debug.DrawRay(transform.position, Vector2.down * extraHeight, Color.green); // debug ray
+
+        return hit.collider != null;
+    }
+
 }
