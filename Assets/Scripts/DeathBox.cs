@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DeathContract : MonoBehaviour
+public class DeathBox : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -10,6 +10,13 @@ public class DeathContract : MonoBehaviour
             if (player != null)
             {
                 player.Respawn();
+
+                // Å´ËÑÇã¨
+                LifePoint lifeUI = FindObjectOfType<LifePoint>();
+                if (lifeUI != null)
+                {
+                    lifeUI.TakeDamage();
+                }
             }
         }
     }
