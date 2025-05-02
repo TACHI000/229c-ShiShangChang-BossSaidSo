@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
         // เคลื่อนที่ซ้าย-ขวา
         rb2d.linearVelocity = new Vector2(moveInput * speed, rb2d.linearVelocity.y);
-
+        
         // Flip character
         if (moveInput > 0)
             transform.localScale = new Vector3(-2, 2, 1);
@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb2d.AddForce(new Vector2(rb2d.linearVelocity.x, jumpForce));
         }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -49,15 +50,5 @@ public class PlayerMovement : MonoBehaviour
             isJumping = true;
         }
     }//OnCollisionExit2D
-
-    bool IsGrounded()
-    {
-        float extraHeight = 0.1f;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, extraHeight, LayerMask.GetMask("Ground"));
-
-        Debug.DrawRay(transform.position, Vector2.down * extraHeight, Color.green); // debug ray
-
-        return hit.collider != null;
-    }
 
 }
