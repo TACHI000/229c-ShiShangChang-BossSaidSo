@@ -9,6 +9,10 @@ public class PlayerMovement : MonoBehaviour
     private float moveInput;
     private Rigidbody2D rb2d;
 
+    public LayerMask groundLayer; 
+    public Transform groundCheck; 
+    public float groundCheckRadius = 0.2f;
+
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -35,20 +39,9 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    bool IsGrounded()
     {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = false;
-        }
-    }//OnCollisionEnter2D
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Ground"))
-        {
-            isJumping = true;
-        }
-    }//OnCollisionExit2D
+        return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+    }
 
 }
