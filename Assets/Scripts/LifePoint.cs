@@ -11,6 +11,7 @@ public class LifePoint : MonoBehaviour
     public Sprite heartEmpty;
 
     public GameObject gameOverImage;
+    public GameObject retryButt;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class LifePoint : MonoBehaviour
         {
             Debug.Log("Game Over");
             if (gameOverImage != null) gameOverImage.SetActive(true);
+            if (retryButt != null) retryButt.SetActive(true);
         }
     }
 
